@@ -1,0 +1,639 @@
+/* Geral */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #000; /* Fundo preto */
+  color: #0f0; /* Texto verde hacker */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container central */
+.container {
+  text-align: center;
+  z-index: 2;
+}
+
+/* Logo */
+.logo {
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgb(0, 255, 0); /* Verde neon */
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0a0; /* Efeito de brilho hacker */
+}
+
+/* Botão inicial */
+.btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  background: linear-gradient(90deg, #0f0, #0a0); /* Tons de verde hacker */
+  border: 2px solid #0f0;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #0f0;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #0a0, #0f0);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Menu */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.menu-title {
+  font-size: 3rem;
+  color: #0f0;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0a0;
+  margin-bottom: 30px;
+}
+
+.music-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.music-btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  background: linear-gradient(90deg, #0f0, #0a0);
+  border: 2px solid #0f0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.music-btn:hover {
+  background: linear-gradient(90deg, #0a0, #0f0);
+  transform: scale(1.1);
+  color: #fff;
+  box-shadow: 0 0 15px #0f0;
+}
+
+.play-area {
+  width: 60%;
+  height: 80%;
+  border: 4px solid rgb(7, 61, 0);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hit-bar {
+  width: 100%;
+  height: 80px;
+  background-color: #b30000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 4px;
+  border-top: 4px solid #0f0;
+}
+
+/* Lanes */
+.lane {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid #0f0;
+}
+
+.lane:last-child {
+  border-right: 2px solid #0f0;
+}
+
+/* Texto dentro das lanes */
+.lane-label {
+  position: absolute;
+  bottom: 5px;
+  font-size: 1.5rem;
+  color: #0f0;
+}
+
+/* Efeito ao pressionar teclas */
+.lane.active {
+  background-color: #0f0;
+  animation: grow 0.1s forwards;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.note.missed {
+  background-color: #f00; /* Nota perdida */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .music-btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .play-area {
+    width: 80%;
+  }
+
+  .lane-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-title {
+    font-size: 1.5rem;
+  }
+
+  .music-btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .play-area {
+    width: 90%;
+  }
+
+  .lane-label {
+    font-size: 1rem;
+  }
+}
+.lane.missed {
+  border-bottom: 7px solid red;
+}
+.lane.success {
+  border-bottom: 4px solid #0f9; /* Verde mais claro para sucesso */
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  color: #0f0;
+  border: 4px solid #0f0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px #0f0;
+  z-index: 1000;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.popup h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.popup p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  font-size: 1.2rem;
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.popup button:hover {
+  background-color: #0a0;
+}
+.lane.missed {
+  border-bottom: 7px solid red !important; /* Força a prioridade */
+  animation: none; /* Evita conflitos com outras animações */
+}
+
+.lane.success {
+  border-bottom: 7px solid rgb(0, 255, 242) !important; /* Verde mais claro */
+  animation: none; /* Evita conflitos */
+}
+
+.lane {
+  transition: border-bottom 0.1s ease-in-out; /* Suaviza a transição */
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  color: rgb(255, 187, 0);
+  border: 4px solid #0f0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px #0f0;
+  z-index: 1000;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.popup button:hover {
+  background-color: #0a0;
+}
+/* Estilo para o container do placar e falhas */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 95%; /* Ajuste para dar mais espaço lateral */
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 1%; /* Move ligeiramente para a esquerda */
+  font-size: 20px;
+  color: #0f0; /* Verde para o score */
+}
+
+/* Estilo do contador de falhas */
+#fail-score {
+  color: #f00; /* Vermelho para as falhas */
+  font-weight: bold;
+}
+
+/* Container do Jogo */
+.game-container {
+  width: 80%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  background: linear-gradient(180deg, #121212, #000);
+  border: 4px solid #0f0;
+  box-shadow: 0 0 15px #0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Play Area */
+.play-area {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Informações de Pontuação */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #0f0;
+}
+
+/* Fails em Vermelho */
+#fail-score {
+  color: #f00;
+  font-weight: bold;
+}
+
+/* Trilhas Estilo Guitar Hero */
+.track-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.track-line {
+  width: 25%;
+  height: 100%;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.lane {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid #0f0;
+}
+
+.lane:last-child {
+  border-right: 2px solid #0f0;
+}
+
+/* Texto nas Lanes */
+.lane-label {
+  font-size: 1.5rem;
+  color: #0f0;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0a0;
+}
+
+/* Feedback de Acertos e Erros */
+.lane.active {
+  background-color: #121212;
+}
+
+.lane.missed {
+  border-bottom: 4px solid #f00;
+}
+
+/* Notas do Jogo */
+.note {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #0f0, #000);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #0f0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .game-container {
+    width: 90%;
+    height: 95%;
+  }
+
+  .track-line {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .lane-label {
+    font-size: 1rem;
+  }
+
+  .note {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Estilo do Countdown */
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #0f0;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0a0;
+  display: block;
+  z-index: 1000; /* Garantir que fique sobre tudo */
+  background: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+  padding: 20px 30px; /* Espaçamento interno */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 0 15px #0f0; /* Efeito de brilho */
+  animation: zoom-in 0.5s ease-in-out; /* Animação de zoom */
+}
+
+/* Animação de zoom */
+@keyframes zoom-in {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Play Area */
+.play-area {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Informações de Pontuação */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #0f0;
+}
+
+/* Fails em Vermelho */
+#fail-score {
+  color: #f00; /* Vermelho */
+  font-weight: bold;
+  text-align: right;
+  margin-right: 50px; /* Distância da borda direita */
+}
+
+/* Trilhas Estilo Guitar Hero */
+.track-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.track-line {
+  width: 25%;
+  height: 100%;
+  border-left: 2px solid rgba(0, 255, 0, 0.5);
+}
+
+/* Botões de Pressão */
+.hit-bar {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #047521, #217200); /* Verde queimado */
+  border-top: 6px solid #fefffe;
+  box-shadow: 0 5px 10px rgba(6, 95, 28, 0.4);
+}
+
+.lane {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid #0f0;
+}
+
+.lane:last-child {
+  border-right: 2px solid #0f0;
+}
+
+/* Botões com efeito 3D */
+.lane-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0a0;
+  background: linear-gradient(145deg, #0a0, #0f0);
+  border: 2px solid rgb(1, 134, 8);
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: inset 2px 2px 5px rgb(1, 187, 1),
+    inset -2px -2px 5px rgb(18, 141, 18);
+}
+
+/* Notas do Jogo */
+.note {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #0f0, #e7d4d4);
+  border: 2px solid #f0f8f1;
+  border-radius: 40%;
+  box-shadow: 0 0 15px #0f0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .game-container {
+    width: 90%;
+    height: 95%;
+  }
+
+  .track-line {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .lane-label {
+    font-size: 1rem;
+  }
+
+  .note {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* Estilo para Desktop */
+@media (min-width: 1024px) {
+  .game-container {
+    width: 35%; /* Reduz largura para 50% no PC */
+    height: 85%; /* Altura ajustada */
+    margin: auto;
+    border-radius: 10px;
+  }
+
+  .note {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #0f0, #017a07);
+    border: 1px solid #e4ebe5;
+    border-radius: 60%;
+    box-shadow: 0 0 15px rgba(2, 212, 2, 0.726);
+  }
+
+  .hit-bar {
+    height: 50px; /* Reduz altura da barra no PC */
+  }
+
+  .lane {
+    border-left: 1px solid rgba(0, 255, 0, 0.5); /* Reduz espessura */
+  }
+
+  .lane:last-child {
+    border-right: 1px solid rgba(0, 255, 0, 0.5);
+  }
+  .popup h1 {
+    font-size: 1.3rem; /* Reduz título */
+  }
+
+  .popup p {
+    font-size: 1.3rem; /* Reduz subtítulo */
+  }
+
+  .popup button {
+    font-size: 1rem; /* Botão menor */
+    padding: 10px 16px; /* Ajusta o tamanho do botão */
+  }
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #121212; /* Cor do fundo da barra */
+  color: #0f0; /* Verde neon */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  box-shadow: 0 -2px 10px rgba(0, 255, 0, 0.5);
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+.footer a {
+  color: #0f9; /* Verde mais claro para o link */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: #00ff00; /* Efeito ao passar o mouse */
+}
+body.game-page {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+  background: url("/fundooficialgame.svg") no-repeat center center fixed; /* Adiciona o fundo */
+  background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+  color: #0f0; /* Texto verde hacker */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D-KLZ - Jogo</title>
+  <link rel="icon" href="/favicon.svg" type="image/x-icon">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="game-page">
+  <!-- Contador antes do jogo -->
+  <div id="countdown" class="countdown">3</div>
+
+  <div class="game-container">
+    <div class="play-area">
+      <!-- Pontuação -->
+      <div class="game-info">
+        <div id="score">Score: 0</div>
+        <div id="fail-score">Fails: 0</div>
+      </div>
+
+      <!-- Linhas de separação estilo Guitar Hero -->
+      <div class="track-lines">
+        <div class="track-line"></div>
+        <div class="track-line"></div>
+        <div class="track-line"></div>
+        <div class="track-line"></div>
+      </div>
+
+      <!-- Área de jogo -->
+      <div class="hit-bar">
+        <div class="lane" id="lane-a">
+          <span class="lane-label">A</span>
+        </div>
+        <div class="lane" id="lane-s">
+          <span class="lane-label">S</span>
+        </div>
+        <div class="lane" id="lane-d">
+          <span class="lane-label">D</span>
+        </div>
+        <div class="lane" id="lane-f">
+          <span class="lane-label">F</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player de áudio escondido -->
+  <audio id="gameMusic"></audio>
+
+  <script src="game.js"></script>
+
+</body>
+
+</html>

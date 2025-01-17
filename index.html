@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D-KLZ</title>
+  <link rel="icon" href="/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: url('/banner.svg') no-repeat center center fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <h1 class="logo">D-KLZ</h1>
+
+    <!-- Botão -->
+    <button id="startButton" class="btn">Go Play?</button>
+  </div>
+
+
+
+  <script>
+    document.getElementById('startButton').addEventListener('click', function () {
+      window.location.href = 'menu.html';
+    });
+  </script>
+  <footer class="footer">
+    <p>
+      Desenvolvido por <strong>Daniel Neves Lima</strong> -
+      <a href="https://www.linkedin.com/in/daniel-neves-asplo/" target="_blank">LinkedIn</a>
+    </p>
+  </footer>
+</body>
+
+</html>
