@@ -18,6 +18,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let gameInterval;
   let noteMap = [];
   let gameOver = false;
+  Object.keys(lanes).forEach((key) => {
+    const lane = lanes[key];
+
+    lane.addEventListener("touchstart", () => {
+      if (gameOver) return;
+      lane.classList.add("active");
+
+      // Simule um evento de tecla pressionada
+      const notes = document.querySelectorAll(".note");
+      let hit = false;
+
+      notes.forEach((note) => {
+        const noteLeft = parseInt(note.style.left);
+        const noteTop = parseInt(note.style.top);
+
+        const laneIndex = laneKeys.indexOf(key);
+        const laneWidth = playArea.clientWidth / laneKeys.length;
+        const laneCenter = laneWidth * laneIndex + laneWidth / 2;
+
+        if (
+          Math.abs(noteLeft - laneCenter + playArea.clientWidth * 0.05) <=
+            laneWidth / 2 &&
+          noteTop > playArea.clientHeight - 100 &&
+          noteTop < playArea.clientHeight - 50
+        ) {
+          updateScore(10);
+          playArea.removeChild(note);
+          hit = true;
+        }
+      });
+
+      setLaneFeedback(key, hit);
+    });
+
+    lane.addEventListener("touchend", () => {
+      lane.classList.remove("active", "success", "missed");
+    });
+  });
 
   // Atualizar pontuação na tela
   function updateScore(points) {
